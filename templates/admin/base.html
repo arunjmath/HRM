@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin – Aarav People Partners{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root { --navy:#0B1F3A; --navy-l:#162d52; --gold:#C9A84C; --white:#fff; --off:#F9F7F2; --gray:#6b7280; --border:#e5e7eb; --text:#1a2332; --font:'DM Sans',sans-serif; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font);background:#f1f5f9;color:var(--text);display:flex;min-height:100vh;}
+    a{text-decoration:none;color:inherit;}
+    /* Sidebar */
+    .sidebar{width:240px;background:var(--navy);color:#fff;display:flex;flex-direction:column;flex-shrink:0;position:fixed;height:100vh;overflow-y:auto;z-index:100;}
+    .sidebar-logo{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
+    .sidebar-logo .icon{width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:900;font-size:1.1rem;}
+    .sidebar-logo span{font-size:0.85rem;font-weight:600;color:#fff;line-height:1.3;}
+    .sidebar-logo small{display:block;font-size:0.7rem;color:rgba(255,255,255,0.5);font-weight:400;}
+    .sidebar-nav{flex:1;padding:16px 0;}
+    .nav-section{padding:8px 18px 4px;font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.35);font-weight:600;}
+    .sidebar-nav a{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:0.86rem;color:rgba(255,255,255,0.7);transition:all 0.2s;border-left:3px solid transparent;}
+    .sidebar-nav a:hover{background:rgba(255,255,255,0.06);color:#fff;border-left-color:var(--gold);}
+    .sidebar-nav a.active{background:rgba(201,168,76,0.12);color:var(--gold);border-left-color:var(--gold);}
+    .sidebar-nav a i{width:16px;text-align:center;}
+    /* Main */
+    .admin-main{margin-left:240px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
+    .admin-header{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+    .admin-header h1{font-size:1.1rem;font-weight:600;color:var(--navy);}
+    .admin-header .user{display:flex;align-items:center;gap:12px;}
+    .admin-header .avatar{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:700;font-size:0.9rem;}
+    .admin-content{padding:28px;flex:1;}
+    /* Flash */
+    .flash{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.88rem;font-weight:500;}
+    .flash-success{background:#ecfdf5;color:#065f46;border-left:4px solid #10b981;}
+    .flash-error{background:#fef2f2;color:#991b1b;border-left:4px solid #ef4444;}
+    /* Cards */
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px;}
+    .stat-card{background:#fff;border-radius:10px;padding:20px;border:1px solid var(--border);}
+    .stat-card .num{font-size:2rem;font-weight:700;color:var(--navy);}
+    .stat-card .lbl{font-size:0.78rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;}
+    .stat-card .icon{font-size:1.5rem;color:var(--gold);margin-bottom:8px;}
+    /* Table */
+    .table-card{background:#fff;border-radius:10px;border:1px solid var(--border);overflow:hidden;}
+    .table-card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+    .table-card-header h3{font-size:0.95rem;font-weight:600;color:var(--navy);}
+    table{width:100%;border-collapse:collapse;font-size:0.86rem;}
+    th{background:#f8fafc;padding:10px 16px;text-align:left;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray);font-weight:600;border-bottom:1px solid var(--border);}
+    td{padding:12px 16px;border-bottom:1px solid #f1f5f9;vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#fafafa;}
+    /* Badges */
+    .badge{display:inline-block;padding:3px 10px;border-radius:50px;font-size:0.72rem;font-weight:600;}
+    .badge-green{background:#ecfdf5;color:#059669;}
+    .badge-yellow{background:#fef3c7;color:#d97706;}
+    .badge-red{background:#fef2f2;color:#dc2626;}
+    .badge-blue{background:#eff6ff;color:#2563eb;}
+    .badge-gray{background:#f3f4f6;color:#6b7280;}
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:6px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;}
+    .btn-primary{background:var(--gold);color:var(--navy);}
+    .btn-primary:hover{background:#b8943e;}
+    .btn-navy{background:var(--navy);color:#fff;}
+    .btn-navy:hover{background:var(--navy-l);}
+    .btn-danger{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
+    .btn-danger:hover{background:#dc2626;color:#fff;}
+    .btn-sm{padding:4px 10px;font-size:0.78rem;}
+    /* Forms */
+    .form-card{background:#fff;border-radius:10px;border:1px solid var(--border);padding:28px;max-width:800px;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .form-group{display:flex;flex-direction:column;gap:4px;}
+    .form-group.full{grid-column:1/-1;}
+    label{font-size:0.82rem;font-weight:600;color:var(--navy);}
+    input,select,textarea{padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;font-family:var(--font);font-size:0.88rem;color:var(--text);background:#fff;outline:none;transition:border-color 0.2s;}
+    input:focus,select:focus,textarea:focus{border-color:var(--gold);}
+    textarea{resize:vertical;min-height:100px;}
+    .check-label{display:flex;align-items:center;gap:8px;font-size:0.88rem;cursor:pointer;}
+    .form-actions{display:flex;gap:10px;margin-top:20px;}
+    /* Pagination */
+    .page-info{font-size:0.82rem;color:var(--gray);padding:12px 20px;border-top:1px solid var(--border);}
+  </style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">A</div>
+    <span>Aarav People Partners<small>Admin Panel</small></span>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Main</div>
+    <a href="{{ url_for('admin_dashboard') }}" class="{{ 'active' if request.endpoint == 'admin_dashboard' }}"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+    <div class="nav-section">Recruitment</div>
+    <a href="{{ url_for('admin_jobs') }}" class="{{ 'active' if 'job' in request.endpoint }}"><i class="fa fa-briefcase"></i> Job Listings</a>
+    <a href="{{ url_for('admin_applications') }}" class="{{ 'active' if 'application' in request.endpoint }}"><i class="fa fa-file-alt"></i> Applications</a>
+    <div class="nav-section">Courses</div>
+    <a href="{{ url_for('admin_courses') }}" class="{{ 'active' if 'course' in request.endpoint }}"><i class="fa fa-graduation-cap"></i> Courses</a>
+    <a href="{{ url_for('admin_enrollments') }}" class="{{ 'active' if 'enrollment' in request.endpoint }}"><i class="fa fa-user-graduate"></i> Enrollments</a>
+    <div class="nav-section">Content</div>
+    <a href="{{ url_for('admin_blogs') }}" class="{{ 'active' if 'blog' in request.endpoint }}"><i class="fa fa-newspaper"></i> Blog Posts</a>
+    <a href="{{ url_for('admin_testimonials') }}" class="{{ 'active' if 'testimonial' in request.endpoint }}"><i class="fa fa-star"></i> Testimonials</a>
+    <div class="nav-section">CRM</div>
+    <a href="{{ url_for('admin_contacts') }}" class="{{ 'active' if 'contact' in request.endpoint }}"><i class="fa fa-envelope"></i> Contact Leads</a>
+    <a href="{{ url_for('admin_newsletter') }}" class="{{ 'active' if 'newsletter' in request.endpoint }}"><i class="fa fa-paper-plane"></i> Newsletter</a>
+    <div class="nav-section">Account</div>
+    <a href="{{ url_for('index') }}" target="_blank"><i class="fa fa-globe"></i> View Website</a>
+    <a href="{{ url_for('admin_logout') }}"><i class="fa fa-sign-out-alt"></i> Logout</a>
+  </div>
+</nav>
+
+<div class="admin-main">
+  <header class="admin-header">
+    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+    <div class="user">
+      <span style="font-size:0.85rem;color:var(--gray);">Welcome, {{ session.get('admin_name', 'Admin') }}</span>
+      <div class="avatar">{{ session.get('admin_name', 'A')[0] }}</div>
+    </div>
+  </header>
+
+  <div class="admin-content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}{% for cat, msg in messages %}
+      <div class="flash flash-{{ cat }}"><i class="fa {{ 'fa-check-circle' if cat == 'success' else 'fa-exclamation-circle' }}"></i> {{ msg }}</div>
+      {% endfor %}{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+</body>
+</html>

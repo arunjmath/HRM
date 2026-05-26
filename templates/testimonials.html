@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Testimonials – Aarav People Partners{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+
+    <h1>Client Testimonials</h1>
+
+    <p>
+      Hear what our clients say about our HR, recruitment, payroll,
+      and workforce management solutions.
+    </p>
+
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span>Testimonials</span>
+    </div>
+
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-label">Success Stories</div>
+
+      <h2>Trusted by Businesses Across Industries</h2>
+
+      <p>
+        We take pride in delivering reliable HR solutions and building
+        long-term partnerships with our clients.
+      </p>
+    </div>
+
+    <div class="testimonial-grid">
+
+      {% for t in [
+        {
+          'name': 'Rahul Sharma',
+          'position': 'HR Manager',
+          'company': 'TechNova Solutions',
+          'message': 'Aarav People Partners streamlined our recruitment process and helped us hire top-quality talent quickly. Their professionalism and support are outstanding.'
+        },
+        {
+          'name': 'Priya Mehta',
+          'position': 'Operations Head',
+          'company': 'BrightEdge Industries',
+          'message': 'Their payroll outsourcing services saved us significant time and ensured complete statutory compliance every month.'
+        },
+        {
+          'name': 'Arjun Reddy',
+          'position': 'Director',
+          'company': 'VisionCorp Pvt Ltd',
+          'message': 'The HR training sessions conducted by Aarav People Partners greatly improved employee engagement and leadership skills within our organization.'
+        },
+        {
+          'name': 'Sneha Kapoor',
+          'position': 'CEO',
+          'company': 'NextGen Ventures',
+          'message': 'We appreciate their dedication and quick response. Their recruitment expertise helped us scale our team efficiently.'
+        },
+        {
+          'name': 'Vikram Joshi',
+          'position': 'Finance Manager',
+          'company': 'Elite Manufacturing',
+          'message': 'Accurate payroll management, timely compliance filings, and excellent support — highly recommended HR partner.'
+        },
+        {
+          'name': 'Neha Iyer',
+          'position': 'Admin Head',
+          'company': 'UrbanAxis Group',
+          'message': 'Their manpower solutions helped us deploy skilled contract staff quickly during critical project requirements.'
+        }
+      ] %}
+
+      <div class="testimonial-card">
+
+        <div class="testimonial-icon">
+          <i class="fa fa-quote-left"></i>
+        </div>
+
+        <p class="testimonial-message">
+          "{{ t.message }}"
+        </p>
+
+        <div class="testimonial-user">
+
+          <div class="testimonial-avatar">
+            {{ t.name[0] }}
+          </div>
+
+          <div>
+            <h4>{{ t.name }}</h4>
+            <p>{{ t.position }} • {{ t.company }}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

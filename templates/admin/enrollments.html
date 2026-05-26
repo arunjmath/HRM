@@ -1,0 +1,80 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Enrollments – Admin{% endblock %}
+
+{% block page_title %}
+Course Enrollments
+{% endblock %}
+
+{% block content %}
+
+<div class="table-card">
+
+  <div class="table-card-header">
+    <h3>All Enrollments ({{ enrollments|length }})</h3>
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Qualification</th>
+        <th>Contact</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for e in enrollments %}
+      <tr>
+
+        <td>
+          <strong>{{ e.name }}</strong><br>
+
+          <span style="font-size:0.78rem;color:#6b7280;">
+            {{ e.email }}
+          </span>
+        </td>
+
+        <td>{{ e.course_name }}</td>
+
+        <td>{{ e.qualification or '–' }}</td>
+
+        <td>
+          <a href="tel:{{ e.phone }}">{{ e.phone }}</a>
+        </td>
+
+        <td>
+          <span class="badge {{ 'badge-yellow' if e.status=='pending' else 'badge-green' if e.status=='confirmed' else 'badge-gray' }}">
+            {{ e.status }}
+          </span>
+        </td>
+
+        <td>
+          {{ e.enrolled_at.strftime('%b %d, %Y') if e.enrolled_at else '' }}
+        </td>
+
+      </tr>
+
+      {% else %}
+      <tr>
+        <td colspan="6"
+            style="text-align:center;padding:40px;color:#6b7280;">
+
+          No enrollments yet.
+
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}

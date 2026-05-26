@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+{% block title %}Aarav People Partners – Premier HR Consultancy Bangalore{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fa fa-star"></i> #1 HR Consultancy in Bangalore</div>
+        <h1>Helping <span>companies</span> and <span>skilled candidates</span> work stress-free</h1>
+        <p>Aarav People Partners help businesses match their job description with candidates' backgrounds and skills. Find your ideal candidate today! </p>
+        <div class="hero-buttons">
+          <a href="{{ url_for('careers') }}" class="btn btn-primary"><i class="fa fa-briefcase"></i> Explore Careers</a>
+          <a href="{{ url_for('contact') }}" class="btn btn-outline"><i class="fa fa-handshake"></i> Hire Talents</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <div class="num" data-count="10" data-suffix="+">3+</div>
+            <div class="lbl">Years Experience</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="num" data-count="500" data-suffix="+">10K+</div>
+            <div class="lbl">Candidates Placed</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="num" data-count="100" data-suffix="+">100+</div>
+            <div class="lbl">Client Companies</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-main-card">
+            <h3><i class="fa fa-rocket"></i> Our Key Services</h3>
+            <ul class="hero-card-list">
+              <li><i class="fa fa-check-circle"></i> Manpower & Payroll Outsourcing</li>
+              <li><i class="fa fa-check-circle"></i> HR Consulting & Strategy</li>
+              <li><i class="fa fa-check-circle"></i> Talent Acquisition</li>
+              <li><i class="fa fa-check-circle"></i> HR & Payroll Training</li>
+              <li><i class="fa fa-check-circle"></i> Compliance & Labour Law</li>
+              <!--<li><i class="fa fa-check-circle"></i> Student Certification Courses</li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num" data-count="10" data-suffix="+">10+</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="500" data-suffix="+">500+</div>
+        <div class="stat-label">Candidates Placed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="100" data-suffix="+">100+</div>
+        <div class="stat-label">Corporate Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="50" data-suffix="+">50+</div>
+        <div class="stat-label">Placement Partners</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About Mission -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-num">10+</div>
+        <p style="color:rgba(255,255,255,0.75);margin:8px 0 24px;">Years of HR Excellence</p>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">Our partner clients trust us with our real-time data of professionals' employment actions. We channel this opportunity, helping businesses achieve maximum success. <br>Aarav People Partners is built to offer reliable HR outsourcing and talent management services.</p>
+        <div class="about-team">
+          <div class="team-item"><div class="num">25+</div><div class="lbl">Expert Recruiters GLobally</div></div>
+          <div class="team-item"><div class="num">98%</div><div class="lbl">Client Satisfaction</div></div>
+          <div class="team-item"><div class="num">4.8★</div><div class="lbl">Average Rating</div></div>
+          <div class="team-item"><div class="num">72hr</div><div class="lbl">Avg. Placement</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-title">To Become the Helping Hand to Client's Business Value</h2>
+        <p style="color:var(--gray);margin-bottom:24px;">Every 3 seconds, we update our database with real-time data on global employee actions. We help our clients and partners find the right fit for the job role!</p>
+        <ul class="values-list">
+          <li>
+            <i class="fa fa-award val-icon"></i>
+            <div class="val-text"><h4>Excellence in Service</h4><p>We hold ourselves to the highest standards of HR practice and client service delivery.</p></div>
+          </li>
+          <li>
+            <i class="fa fa-users val-icon"></i>
+            <div class="val-text"><h4>People First Approach</h4><p>Every solution we design keeps people — candidates and employees — at the center.</p></div>
+          </li>
+          <li>
+            <i class="fa fa-shield-alt val-icon"></i>
+            <div class="val-text"><h4>Compliance & Integrity</h4><p>Full adherence to Indian labour laws, GST, PF, ESI, and all statutory requirements.</p></div>
+          </li>
+        </ul>
+        <div style="margin-top:28px;">
+          <a href="{{ url_for('about') }}" class="btn btn-navy">Learn About Us <i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">B2B Services</div>
+      <h2 class="section-title">HR Solutions for Every Business Need</h2>
+      <p class="section-subtitle">Helping businesses hire smarter, manage better, and grow with confidence.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-users-cog"></i></div>
+        <h3>Smarter Outsourcing</h3>
+        <p>Complete workforce management and accurate payroll processing with full statutory compliance, including PF, ESI, TDS, and related regulations.</p>
+        <a href="{{ url_for('manpower') }}" class="service-link">Learn More <i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-chart-line"></i></div>
+        <h3>HR Consulting Services</h3>
+        <p>Strategic HR consulting to streamline policies, strengthen processes, and build organizational structures aligned with business objectives.</p>
+        <a href="{{ url_for('hr_consulting') }}" class="service-link">Learn More <i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-search"></i></div>
+        <h3>Talent Acquisition</h3>
+        <p>End-to-end recruitment solutions that help you attract, hire, and onboard the right talent with speed and precision.</p>
+        <a href="{{ url_for('talent_acquisition') }}" class="service-link">Learn More <i class="fa fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-graduation-cap"></i></div>
+        <h3>HR & Payroll Training</h3>
+        <p>Industry-focused HR and payroll training programs designed to build practical skills and ensure regulatory awareness.</p>
+        <a href="{{ url_for('hr_training') }}" class="service-link">Learn More <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Courses 
+{% if courses %}
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Student Courses</div>
+      <h2 class="section-title">Industry-Recognised Certification Programmes</h2>
+      <p class="section-subtitle">Government-recognised NSQF certifications with job guarantee, AI exposure, and real-world projects.</p>
+    </div>
+    <div class="courses-grid">
+      {% for course in courses %}
+      <div class="course-card">
+        <div class="course-img"><i class="fa fa-graduation-cap"></i></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span class="tag tag-blue">{{ course.category }}</span>
+            <span class="tag tag-gold">{{ course.duration }}</span>
+            {% if course.certification %}<span class="tag tag-green">{{ course.certification }}</span>{% endif %}
+          </div>
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.description[:120] }}...</p>
+          <div class="course-footer">
+            <div class="course-price">₹{{ course.price }} <small>/ programme</small></div>
+            <a href="{{ url_for('course_detail', course_id=course._id) }}" class="btn btn-sm btn-navy">Know More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="{{ url_for('student_course') }}" class="btn btn-outline-navy">View All Courses <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+-->
+<!-- Why Choose Us -->
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">What Makes Aarav People Partners Different?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon"><i class="fa fa-certificate"></i></div><h4>Job Guarantee</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-robot"></i></div><h4>AI-Driven Training</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-file-alt"></i></div><h4>Work Experience Letters</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-industry"></i></div><h4>Real Operational Exposure</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-medal"></i></div><h4>NSQF Certifications</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-percent"></i></div><h4>GST Exempt Programmes</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- Open Positions -->
+{% if jobs %}
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Open Positions</div>
+      <h2 class="section-title">Current Job Openings</h2>
+      <p class="section-subtitle">Find your next career opportunity with our client companies across Bangalore.</p>
+    </div>
+    <div class="jobs-list">
+      {% for job in jobs %}
+      <div class="job-card">
+        <div class="job-info">
+          <h3>{{ job.title }}</h3>
+          <div class="job-meta">
+            <span><i class="fa fa-building"></i> {{ job.department }}</span>
+            <span><i class="fa fa-map-marker-alt"></i> {{ job.location }}</span>
+            <span><i class="fa fa-clock"></i> {{ job.experience }}</span>
+            {% if job.salary %}<span><i class="fa fa-rupee-sign"></i> {{ job.salary }}</span>{% endif %}
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+          <span class="job-type-badge {{ 'full-time' if job.type == 'Full-time' else 'part-time' if job.type == 'Part-time' else 'contract' }}">{{ job.type }}</span>
+          <a href="{{ url_for('job_detail', job_id=job._id) }}" class="btn btn-sm btn-navy">Apply Now</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="{{ url_for('careers') }}" class="btn btn-outline-navy">View All Jobs <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Testimonials -->
+{% if testimonials %}
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Our Clients & Candidates Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      {% for t in testimonials %}
+      <div class="testimonial-card">
+        <div class="stars">
+          {% for i in range(t.rating) %}<i class="fa fa-star"></i>{% endfor %}
+        </div>
+        <p class="testimonial-text">{{ t.message }}</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">{{ t.name[0] }}</div>
+          <div class="author-info">
+            <div class="author-name">{{ t.name }}</div>
+            <div class="author-role">{{ t.designation }}{% if t.company %}, {{ t.company }}{% endif %}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Placement Partners -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Our Network</div>
+      <h2 class="section-title">Placement Partners</h2>
+      <p class="section-subtitle">We have placed candidates with leading companies across industries.</p>
+    </div>
+    <div class="partners-scroll">
+      <div class="partners-track">
+        {% set partners = ['DHL', 'DTDC', 'Delhivery', 'Blue Dart', 'MRF', 'Lulu Group', 'FirstCry', 'Ecom Express', 'Cargomar', 'Credvent', 'Info Wise', 'Homevista', 'GG Trading', 'Digma Marketing', 'Ivatech Solutions', 'Access Group', 'Dozco India', 'Manchester Onboard', 'RDP', 'Zahara Builders'] %}
+        {% for p in partners %}<div class="partner-logo">{{ p }}</div>{% endfor %}
+        {% for p in partners %}<div class="partner-logo">{{ p }}</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog -->
+{% if blogs %}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Latest Insights</div>
+      <h2 class="section-title">From Our Blog</h2>
+    </div>
+    <div class="blog-grid">
+      {% for post in blogs %}
+      <div class="blog-card">
+        <div class="blog-img"><i class="fa fa-newspaper"></i></div>
+        <div class="blog-body">
+          <div class="blog-cat">{{ post.category or 'HR Insights' }}</div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt[:100] if post.excerpt else post.content[:100] }}...</p>
+          <div class="blog-footer">
+            <span>{{ post.created_at.strftime('%b %d, %Y') if post.created_at else '' }}</span>
+            <a href="{{ url_for('blog_detail', slug=post.slug) }}" class="read-more">Read More <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="{{ url_for('blog') }}" class="btn btn-outline-navy">View All Posts <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- CTA -->
+<section class="section section-dark">
+  <div class="container" style="text-align:center;">
+    <div class="section-label" style="color:var(--gold);">Get Started Today</div>
+    <h2 class="section-title light" style="margin:0 auto 16px;">Ready to Transform Your HR Operations?</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto 32px;">Whether you need to hire the best talent or streamline your HR processes, Aarav People Partners is your trusted partner.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ url_for('contact') }}" class="btn btn-primary">Get In Touch <i class="fa fa-arrow-right"></i></a>
+      <a href="tel:+919876543210" class="btn btn-outline"><i class="fa fa-phone"></i> +91 7026067457</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

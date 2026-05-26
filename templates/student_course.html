@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Student Courses – Aarav People Partners{% endblock %}
+{% block content %}
+<div class="page-hero"><div class="container">
+  <h1>Student Certification Courses</h1>
+  <p>Industry-recognised certifications with job guarantee and AI-driven learning.</p>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><span>Courses</span></div>
+</div></div>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Why Enrol</div>
+      <h2 class="section-title">Government-Recognised NSQF Certifications</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon"><i class="fa fa-briefcase"></i></div><h4>100% Job Guarantee</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-robot"></i></div><h4>AI & Live Projects</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-file-alt"></i></div><h4>Work Experience Letter</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-medal"></i></div><h4>NSQF Level 5 & 6</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-percent"></i></div><h4>GST Exempt</h4></div>
+      <div class="why-card"><div class="why-icon"><i class="fa fa-users"></i></div><h4>Industry Mentors</h4></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Programmes</div>
+      <h2 class="section-title">Available Courses</h2>
+    </div>
+    {% if courses %}
+    <div class="courses-grid">
+      {% for course in courses %}
+      <div class="course-card">
+        <div class="course-img"><i class="fa fa-graduation-cap"></i></div>
+        <div class="course-body">
+          <div class="course-meta">
+            <span class="tag tag-blue">{{ course.category }}</span>
+            <span class="tag tag-gold">{{ course.duration }}</span>
+            <span class="tag tag-green">{{ course.level }}</span>
+          </div>
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.description[:130] }}...</p>
+          {% if course.certification %}<p style="font-size:0.8rem;color:var(--gold);font-weight:600;"><i class="fa fa-certificate"></i> {{ course.certification }}</p>{% endif %}
+          <div class="course-footer">
+            <div class="course-price">₹{{ course.price }} <small>/ programme</small></div>
+            <div style="display:flex;gap:8px;">
+              <a href="{{ url_for('course_detail', course_id=course._id) }}" class="btn btn-sm btn-outline-navy">Details</a>
+              <a href="{{ url_for('enroll_course', course_id=course._id) }}" class="btn btn-sm btn-navy">Enrol</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align:center;padding:60px;"><p style="color:var(--gray);">New courses coming soon! <a href="{{ url_for('contact') }}" style="color:var(--gold);">Contact us</a> to be notified.</p></div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title light">Our Placement Partners</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;">Our graduates work at leading companies across India.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+      {% for p in ['DHL', 'DTDC', 'Delhivery', 'Blue Dart', 'MRF', 'Lulu Group', 'FirstCry', 'Ecom Express'] %}
+      <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:8px 20px;font-size:0.85rem;color:rgba(255,255,255,0.8);">{{ p }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Aarav People Partners – HR Consultancy Bangalore{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}Aarav People Partners – Premier HR consultancy offering Manpower & Payroll Outsourcing, HR Consulting, Talent Acquisition and Training in Bangalore.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <a href="mailto:info@aaravpeoplepartners.com"><i class="fa fa-envelope"></i>aaravpeoplepartners@gmail.com"</a>
+      <a href="tel:+919876543210"><i class="fa fa-phone"></i> +91 7026067457</a>
+    </div>
+    <div class="topbar-right">
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="{{ url_for('index') }}" class="logo">
+      <span class="logo-icon">A</span>
+      <span class="logo-text">Aarav<span>People Partners</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.endpoint == 'about' }}">About Us</a></li>
+      <li class="has-dropdown">
+        <a href="#">Services <i class="fa fa-chevron-down"></i></a>
+        <ul class="dropdown">
+          <li><a href="{{ url_for('manpower') }}">Manpower & Payroll Outsourcing</a></li>
+          <li><a href="{{ url_for('hr_consulting') }}">HR Consulting</a></li>
+          <li><a href="{{ url_for('talent_acquisition') }}">Talent Acquisition</a></li>
+          <li><a href="{{ url_for('hr_training') }}">HR & Payroll Training</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ url_for('careers') }}" class="{{ 'active' if request.endpoint == 'careers' }}">Careers</a></li>
+    <!--  <li><a href="{{ url_for('student_course') }}" class="{{ 'active' if request.endpoint == 'student_course' }}">Courses</a></li> -->
+      <li><a href="{{ url_for('testimonials') }}" class="{{ 'active' if request.endpoint == 'testimonials' }}">Testimonials</a></li>
+      <li><a href="{{ url_for('blog') }}" class="{{ 'active' if request.endpoint == 'blog' }}">Blog</a></li>
+      <li><a href="{{ url_for('contact') }}" class="nav-cta {{ 'active' if request.endpoint == 'contact' }}">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="flash-container">
+    {% for cat, msg in messages %}
+    <div class="flash flash-{{ cat }}">
+      <i class="fa {{ 'fa-check-circle' if cat == 'success' else 'fa-exclamation-circle' }}"></i>
+      {{ msg }}
+      <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+
+<!-- Main Content -->
+<main>{% block content %}{% endblock %}</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="{{ url_for('index') }}" class="logo-footer">
+          <span class="logo-icon">A</span>
+          <span class="logo-text">Aarav<span>People Partners</span></span>
+        </a>
+        <p>Your trusted HR partner in Bangalore. We bridge the gap between talent and opportunity with precision and care.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-links-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('about') }}">About Us</a></li>
+          <li><a href="{{ url_for('careers') }}">Careers</a></li>
+          <li><a href="{{ url_for('student_course') }}">Courses</a></li>
+          <li><a href="{{ url_for('blog') }}">Blog</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="{{ url_for('manpower') }}">Manpower & Payroll</a></li>
+          <li><a href="{{ url_for('hr_consulting') }}">HR Consulting</a></li>
+          <li><a href="{{ url_for('talent_acquisition') }}">Talent Acquisition</a></li>
+          <li><a href="{{ url_for('hr_training') }}">HR & Payroll Training</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact-col">
+        <h4>Get In Touch</h4>
+        <p><i class="fa fa-map-marker-alt"></i> Bengaluru, Karnataka, India</p>
+        <p><i class="fa fa-phone"></i> <a href="tel:+919876543210">+91 7026067457</a></p>
+        <p><i class="fa fa-envelope"></i> <a href="mailto:info@aaravpeoplepartners.com">info@aaravpeoplepartners.com</a></p>
+        <div class="newsletter-mini">
+          <h5>Newsletter</h5>
+          <form id="footerNewsletterForm" class="newsletter-form">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit"><i class="fa fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2024 Aarav People Partners. All rights reserved. | <a href="{{ url_for('admin_login') }}">Admin</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button id="scrollTop" aria-label="Scroll to top"><i class="fa fa-arrow-up"></i></button>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

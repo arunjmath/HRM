@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}HR Consulting – Aarav People Partners{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="container">
+    <h1>HR Consulting Services</h1>
+    <p>Strategic HR advisory to align your people strategy with business goals.</p>
+
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="#">Services</a>
+      <span>/</span>
+      <span>HR Consulting</span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="service-detail-grid">
+
+      <div class="service-detail-content">
+
+        <div class="section-label">Our Service</div>
+
+        <h2>Strategic HR Consulting for Modern Businesses</h2>
+
+        <p>
+          We partner with your leadership to design HR frameworks
+          that attract, develop, and retain top talent while building
+          a culture of performance and compliance.
+        </p>
+
+        <div class="feature-list">
+
+          {% for f in [
+            ('fa-sitemap','HR Policy Design','Craft compliant, employee-friendly HR policies and handbooks.'),
+            ('fa-star','Performance Management','Build robust appraisal and KPI frameworks.'),
+            ('fa-balance-scale','Compensation Benchmarking','Competitive salary structuring aligned to market.'),
+            ('fa-project-diagram','Org Design','Optimal organizational structure for efficiency.'),
+            ('fa-graduation-cap','L&D Strategy','Learning roadmaps for employee growth.'),
+            ('fa-shield-alt','Labour Law Compliance','Full compliance audit and risk mitigation.')
+          ] %}
+
+          <div class="feature-item">
+            <i class="fa {{ f[0] }}"></i>
+
+            <div>
+              <h4>{{ f[1] }}</h4>
+              <p>{{ f[2] }}</p>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div>
+        <div class="cta-box">
+          <h3>Start a Consultation</h3>
+
+          <p>
+            Book a free discovery call with our HR consultants today.
+          </p>
+
+          <a href="{{ url_for('contact') }}"
+             class="btn btn-primary"
+             style="width:100%;justify-content:center;">
+             Book Now
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

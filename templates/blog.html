@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% block title %}Blog – Aarav People Partners{% endblock %}
+
+{% block content %}
+
+<style>
+
+.page-hero{
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    padding: 90px 0;
+    color: white;
+    text-align: center;
+}
+
+.page-hero h1{
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.page-hero p{
+    font-size: 18px;
+    color: #cbd5e1;
+    max-width: 750px;
+    margin: auto;
+}
+
+.breadcrumb{
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.breadcrumb a{
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.section{
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-header{
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-label{
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-header h2{
+    font-size: 40px;
+    color: #0f172a;
+    margin-bottom: 15px;
+}
+
+.section-header p{
+    max-width: 750px;
+    margin: auto;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.blog-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 30px;
+}
+
+.blog-card{
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: 0.4s ease;
+}
+
+.blog-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+.blog-image{
+    height: 230px;
+    overflow: hidden;
+}
+
+.blog-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+}
+
+.blog-card:hover img{
+    transform: scale(1.08);
+}
+
+.blog-content{
+    padding: 28px;
+}
+
+.blog-meta{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.blog-content h3{
+    font-size: 24px;
+    color: #0f172a;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.blog-content p{
+    color: #64748b;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.read-more{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.read-more:hover{
+    color: #0f172a;
+    gap: 12px;
+}
+
+@media(max-width:768px){
+
+    .page-hero h1{
+        font-size: 38px;
+    }
+
+    .section-header h2{
+        font-size: 30px;
+    }
+
+}
+
+</style>
+
+<div class="page-hero">
+    <div class="container">
+
+        <h1>Our Blog</h1>
+
+        <p>
+            Insights, updates, and expert knowledge on HR, recruitment,
+            payroll, and workforce management.
+        </p>
+
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span> / Blog</span>
+        </div>
+
+    </div>
+</div>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Latest Articles
+            </div>
+
+            <h2>HR & Workforce Insights</h2>
+
+            <p>
+                Stay updated with the latest trends, compliance updates,
+                hiring strategies, and employee management best practices.
+            </p>
+
+        </div>
+
+        <div class="blog-grid">
+
+            {% for blog in [
+
+            {
+                'image':'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+                'title':'Top HR Trends Businesses Should Watch in 2026',
+                'category':'HR Trends',
+                'date':'May 2026',
+                'desc':'Discover the latest HR technologies, hybrid work strategies, and employee engagement trends shaping the future workplace.'
+            },
+
+            {
+                'image':'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
+                'title':'Why Payroll Compliance Matters for Growing Companies',
+                'category':'Payroll',
+                'date':'May 2026',
+                'desc':'Learn how accurate payroll processing and statutory compliance protect businesses from costly penalties.'
+            },
+
+            {
+                'image':'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200&auto=format&fit=crop',
+                'title':'Effective Employee Training Strategies',
+                'category':'Training',
+                'date':'April 2026',
+                'desc':'Explore practical methods to improve workforce productivity through structured training programs.'
+            },
+
+            {
+                'image':'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+                'title':'How Recruitment Outsourcing Saves Time & Cost',
+                'category':'Recruitment',
+                'date':'April 2026',
+                'desc':'Understand how outsourcing recruitment can help businesses hire faster and improve talent quality.'
+            },
+
+            {
+                'image':'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop',
+                'title':'Building a Positive Workplace Culture',
+                'category':'Workplace',
+                'date':'March 2026',
+                'desc':'A healthy workplace culture boosts retention, morale, and overall business performance.'
+            },
+
+            {
+                'image':'https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop',
+                'title':'Essential HR Policies Every Company Needs',
+                'category':'Compliance',
+                'date':'March 2026',
+                'desc':'A guide to creating HR policies that ensure legal compliance and employee transparency.'
+            }
+
+            ] %}
+
+            <div class="blog-card">
+
+                <div class="blog-image">
+                    <img src="{{ blog.image }}" alt="{{ blog.title }}">
+                </div>
+
+                <div class="blog-content">
+
+                    <div class="blog-meta">
+                        <span>{{ blog.category }}</span>
+                        <span>•</span>
+                        <span>{{ blog.date }}</span>
+                    </div>
+
+                    <h3>{{ blog.title }}</h3>
+
+                    <p>{{ blog.desc }}</p>
+
+                    <a href="#" class="read-more">
+                        Read More
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

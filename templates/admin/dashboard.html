@@ -1,0 +1,141 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard – Admin{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block content %}
+
+<!-- KPI Cards Row 1 -->
+<div class="admin-grid-4">
+  <div class="kpi-card">
+    <div class="kpi-icon blue"><i class="fa fa-envelope"></i></div>
+    <div>
+      <div class="kpi-label">Total Leads</div>
+      <div class="kpi-num">{{ stats.contacts }}</div>
+      {% if stats.new_contacts %}<div class="kpi-sub warn">{{ stats.new_contacts }} new</div>{% endif %}
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon gold"><i class="fa fa-briefcase"></i></div>
+    <div>
+      <div class="kpi-label">Active Jobs</div>
+      <div class="kpi-num">{{ stats.jobs }}</div>
+      <div class="kpi-sub">Posted positions</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon green"><i class="fa fa-file-alt"></i></div>
+    <div>
+      <div class="kpi-label">Applications</div>
+      <div class="kpi-num">{{ stats.applications }}</div>
+      {% if stats.new_applications %}<div class="kpi-sub warn">{{ stats.new_applications }} pending</div>{% endif %}
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon purple"><i class="fa fa-graduation-cap"></i></div>
+    <div>
+      <div class="kpi-label">Enrollments</div>
+      <div class="kpi-num">{{ stats.enrollments }}</div>
+      <div class="kpi-sub">Course signups</div>
+    </div>
+  </div>
+</div>
+
+<!-- KPI Cards Row 2 -->
+<div class="admin-grid-4" style="margin-bottom:28px;">
+  <div class="kpi-card">
+    <div class="kpi-icon orange"><i class="fa fa-newspaper"></i></div>
+    <div>
+      <div class="kpi-label">Blog Posts</div>
+      <div class="kpi-num">{{ stats.blogs }}</div>
+      <div class="kpi-sub">Published</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon gold"><i class="fa fa-book-open"></i></div>
+    <div>
+      <div class="kpi-label">Courses</div>
+      <div class="kpi-num">{{ stats.courses }}</div>
+      <div class="kpi-sub">Active programmes</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon blue"><i class="fa fa-star"></i></div>
+    <div>
+      <div class="kpi-label">Testimonials</div>
+      <div class="kpi-num">{{ stats.testimonials }}</div>
+      <div class="kpi-sub">Client reviews</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon green"><i class="fa fa-paper-plane"></i></div>
+    <div>
+      <div class="kpi-label">Newsletter</div>
+      <div class="kpi-num">{{ stats.newsletter }}</div>
+      <div class="kpi-sub">Subscribers</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="table-card" style="margin-bottom:24px;">
+  <div class="table-card-header">
+    <h3><i class="fa fa-bolt" style="color:#C9A84C;margin-right:6px;"></i>Quick Actions</h3>
+  </div>
+  <div style="padding:20px;display:flex;gap:12px;flex-wrap:wrap;">
+    <a href="{{ url_for('admin_new_job') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Post New Job</a>
+    <a href="{{ url_for('admin_new_blog') }}" class="btn btn-navy"><i class="fa fa-pen"></i> Write Blog Post</a>
+    <a href="{{ url_for('admin_new_course') }}" class="btn btn-navy"><i class="fa fa-graduation-cap"></i> Add Course</a>
+    <a href="{{ url_for('admin_new_testimonial') }}" class="btn btn-navy"><i class="fa fa-star"></i> Add Testimonial</a>
+    <a href="{{ url_for('admin_applications') }}" class="btn" style="background:#eff6ff;color:#2563eb;"><i class="fa fa-file-alt"></i> Review Applications</a>
+    <a href="{{ url_for('admin_contacts') }}" class="btn" style="background:#ecfdf5;color:#059669;"><i class="fa fa-envelope"></i> View Leads</a>
+  </div>
+</div>
+
+<div class="admin-grid-2">
+  <!-- Recent Contacts -->
+  <div class="table-card">
+    <div class="table-card-header">
+      <h3>Recent Contact Leads</h3>
+      <a href="{{ url_for('admin_contacts') }}" class="btn btn-sm btn-navy">View All</a>
+    </div>
+    <table>
+      <thead><tr><th>Name</th><th>Service</th><th>Status</th><th>Date</th></tr></thead>
+      <tbody>
+        {% for c in recent_contacts %}
+        <tr>
+          <td><strong>{{ c.name }}</strong><br><span style="font-size:0.78rem;color:#6b7280;">{{ c.email }}</span></td>
+          <td style="font-size:0.82rem;">{{ c.service or '–' }}</td>
+          <td><span class="badge {{ 'badge-yellow' if c.status == 'new' else 'badge-green' if c.status == 'resolved' else 'badge-gray' }}">{{ c.status }}</span></td>
+          <td style="font-size:0.78rem;color:#6b7280;">{{ c.created_at.strftime('%b %d') if c.created_at else '' }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" style="text-align:center;color:#6b7280;padding:24px;">No contacts yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Recent Applications -->
+  <div class="table-card">
+    <div class="table-card-header">
+      <h3>Recent Applications</h3>
+      <a href="{{ url_for('admin_applications') }}" class="btn btn-sm btn-navy">View All</a>
+    </div>
+    <table>
+      <thead><tr><th>Applicant</th><th>Role</th><th>Status</th><th>Date</th></tr></thead>
+      <tbody>
+        {% for a in recent_applications %}
+        <tr>
+          <td><strong>{{ a.name }}</strong><br><span style="font-size:0.78rem;color:#6b7280;">{{ a.email }}</span></td>
+          <td style="font-size:0.82rem;">{{ a.job_title }}</td>
+          <td><span class="badge {{ 'badge-yellow' if a.status == 'pending' else 'badge-green' if a.status == 'shortlisted' else 'badge-red' if a.status == 'rejected' else 'badge-blue' }}">{{ a.status }}</span></td>
+          <td style="font-size:0.78rem;color:#6b7280;">{{ a.applied_at.strftime('%b %d') if a.applied_at else '' }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" style="text-align:center;color:#6b7280;padding:24px;">No applications yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

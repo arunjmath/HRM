@@ -1,0 +1,139 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ 'Edit' if job else 'New' }} Job – Admin
+{% endblock %}
+
+{% block page_title %}
+{{ 'Edit Job' if job else 'Post New Job' }}
+{% endblock %}
+
+{% block content %}
+<div class="form-card">
+
+  <form method="POST">
+
+    <div class="form-grid">
+
+      <div class="form-group full">
+        <label>Job Title *</label>
+
+        <input type="text"
+               name="title"
+               value="{{ job.title if job else '' }}"
+               required
+               placeholder="e.g. HR Manager">
+      </div>
+
+      <div class="form-group">
+        <label>Department *</label>
+
+        <select name="department" required>
+          {% for d in ['Human Resources','Finance','Recruitment','IT','Operations','Sales','Marketing','Administration'] %}
+          <option value="{{ d }}"
+            {{ 'selected' if job and job.department == d }}>
+            {{ d }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Location *</label>
+
+        <input type="text"
+               name="location"
+               value="{{ job.location if job else 'Bengaluru' }}"
+               required>
+      </div>
+
+      <div class="form-group">
+        <label>Employment Type *</label>
+
+        <select name="type" required>
+          {% for t in ['Full-time','Part-time','Contract','Internship','Freelance'] %}
+          <option value="{{ t }}"
+            {{ 'selected' if job and job.type == t }}>
+            {{ t }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Experience Required *</label>
+
+        <input type="text"
+               name="experience"
+               value="{{ job.experience if job else '' }}"
+               required
+               placeholder="e.g. 2-4 years">
+      </div>
+
+      <div class="form-group full">
+        <label>Salary Range</label>
+
+        <input type="text"
+               name="salary"
+               value="{{ job.salary if job else '' }}"
+               placeholder="e.g. 5-8 LPA">
+      </div>
+
+      <div class="form-group full">
+        <label>Job Description *</label>
+
+        <textarea name="description"
+                  rows="5"
+                  required
+                  placeholder="Describe the role, responsibilities, and tasks...">{{ job.description if job else '' }}</textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Requirements (one per line)</label>
+
+        <textarea name="requirements"
+                  rows="5"
+                  placeholder="- 3+ years experience&#10;- Good communication">{{ job.requirements if job else '' }}</textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Benefits (comma-separated)</label>
+
+        <input type="text"
+               name="benefits"
+               value="{{ job.benefits if job else '' }}"
+               placeholder="Health Insurance, PF, Bonus">
+      </div>
+
+      {% if job %}
+      <div class="form-group">
+        <label class="check-label">
+          <input type="checkbox"
+                 name="active"
+                 {{ 'checked' if job.active }}>
+
+          Active (visible on website)
+        </label>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <div class="form-actions">
+
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i>
+        {{ 'Update Job' if job else 'Post Job' }}
+      </button>
+
+      <a href="{{ url_for('admin_jobs') }}"
+         class="btn btn-navy">
+        <i class="fa fa-times"></i>
+        Cancel
+      </a>
+
+    </div>
+
+  </form>
+</div>
+{% endblock %}

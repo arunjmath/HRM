@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Talent Acquisition – Aarav People Partners{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <h1>Talent Acquisition</h1>
+    <p>Strategic hiring solutions to help your business attract, recruit, and retain top talent.</p>
+
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="#">Services</a>
+      <span>/</span>
+      <span>Talent Acquisition</span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="service-detail-grid">
+
+      <div class="service-detail-content">
+
+        <div class="section-label">Our Service</div>
+
+        <h2>End-to-End Talent Acquisition Solutions</h2>
+
+        <p>
+          We help organizations identify, attract, and hire highly skilled professionals
+          across industries through a streamlined and efficient recruitment process.
+        </p>
+
+        <p>
+          From sourcing candidates to onboarding employees, our talent acquisition
+          experts ensure you build a strong workforce aligned with your business goals.
+        </p>
+
+        <div class="feature-list">
+
+          {% for f in [
+            ('fa-search', 'Candidate Sourcing', 'Find qualified candidates through advanced sourcing strategies and talent networks.'),
+            ('fa-user-check', 'Screening & Assessment', 'Comprehensive candidate screening and evaluation for the right fit.'),
+            ('fa-briefcase', 'Executive Hiring', 'Specialized recruitment solutions for leadership and senior-level positions.'),
+            ('fa-users', 'Bulk Hiring', 'Efficient large-scale recruitment support for rapid business expansion.'),
+            ('fa-handshake', 'Interview Coordination', 'Smooth interview scheduling and communication between employers and candidates.'),
+            ('fa-id-badge', 'Onboarding Support', 'Seamless onboarding assistance to ensure a positive employee experience.')
+          ] %}
+
+          <div class="feature-item">
+            <i class="fa {{ f[0] }}"></i>
+
+            <div>
+              <h4>{{ f[1] }}</h4>
+              <p>{{ f[2] }}</p>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="cta-box">
+
+          <h3>Hire the Right Talent</h3>
+
+          <p>
+            Connect with our recruitment specialists and build a workforce that drives business success.
+          </p>
+
+          <a href="{{ url_for('contact') }}"
+             class="btn btn-primary"
+             style="width:100%;justify-content:center;">
+            Contact Us Now
+          </a>
+
+          <p style="margin-top:16px;font-size:0.82rem;color:rgba(255,255,255,0.6);">
+            Or call us at<br>
+
+            <a href="tel:+919876543210"
+               style="color:var(--gold);font-weight:600;">
+              +91 7026067457
+            </a>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

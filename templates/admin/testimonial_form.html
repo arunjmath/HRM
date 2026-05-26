@@ -1,0 +1,88 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Add Testimonial – Admin{% endblock %}
+
+{% block page_title %}
+Add Testimonial
+{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+
+  <form method="POST">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Client Name *</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Designation *</label>
+        <input type="text" name="designation" required>
+      </div>
+
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" name="company">
+      </div>
+
+      <div class="form-group">
+
+        <label>Rating *</label>
+
+        <select name="rating">
+          {% for r in [5,4,3,2,1] %}
+          <option value="{{ r }}">
+            {{ r }} Star{{ 's' if r > 1 }}
+          </option>
+          {% endfor %}
+        </select>
+
+      </div>
+
+      <div class="form-group full">
+
+        <label>Testimonial Message *</label>
+
+        <textarea name="message"
+                  rows="4"
+                  required></textarea>
+
+      </div>
+
+      <div class="form-group full">
+
+        <label>Photo URL</label>
+
+        <input type="url"
+               name="image_url"
+               placeholder="https://...">
+
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i>
+        Add Testimonial
+      </button>
+
+      <a href="{{ url_for('admin_testimonials') }}"
+         class="btn btn-navy">
+
+        Cancel
+
+      </a>
+
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

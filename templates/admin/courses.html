@@ -1,0 +1,79 @@
+{% extends "admin/base.html" %}
+{% block title %}Courses – Admin{% endblock %}
+{% block page_title %}Courses{% endblock %}
+
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+  <p style="color:#6b7280;font-size:0.88rem;">{{ courses|length }} course(s)</p>
+
+  <a href="{{ url_for('admin_new_course') }}" class="btn btn-primary">
+    <i class="fa fa-plus"></i> Add New Course
+  </a>
+</div>
+
+<div class="table-card">
+  <table>
+
+    <thead>
+      <tr>
+        <th>Course Title</th>
+        <th>Category</th>
+        <th>Duration</th>
+        <th>Level</th>
+        <th>Price</th>
+        <th>Certification</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for c in courses %}
+      <tr>
+
+        <td><strong>{{ c.title }}</strong></td>
+
+        <td>
+          <span class="badge badge-blue">{{ c.category }}</span>
+        </td>
+
+        <td>{{ c.duration }}</td>
+
+        <td>{{ c.level }}</td>
+
+        <td>₹{{ c.price }}</td>
+
+        <td>{{ c.certification or '–' }}</td>
+
+        <td>
+          <span class="badge {{ 'badge-green' if c.active else 'badge-gray' }}">
+            {{ 'Active' if c.active else 'Hidden' }}
+          </span>
+        </td>
+
+        <td>
+          <a href="{{ url_for('admin_edit_course', course_id=c._id) }}"
+             class="btn btn-sm btn-navy">
+
+            <i class="fa fa-edit"></i>
+
+          </a>
+        </td>
+
+      </tr>
+
+      {% else %}
+      <tr>
+        <td colspan="8"
+            style="text-align:center;padding:40px;color:#6b7280;">
+
+          No courses yet.
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}About Us – Aarav People Partners{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="container">
+    <h1>About Aarav People Partners</h1>
+    <p>Over 10 years of bridging talent with opportunity across Bangalore.</p>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><span>About Us</span></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Who We Are</h2>
+        <p style="color:var(--gray);margin-bottom:16px;">Aarav People Partners is a premier HR consultancy based in Bangalore, established with the mission to revolutionize how businesses approach human resources. With over a decade of experience, we have grown into one of Bangalore's most trusted HR partners.</p>
+        <p style="color:var(--gray);margin-bottom:16px;">We serve companies of all sizes — from fast-growing startups to established enterprises — providing end-to-end HR solutions that drive real business outcomes.</p>
+        <p style="color:var(--gray);margin-bottom:32px;">Our team of seasoned HR professionals brings deep industry knowledge across IT, Manufacturing, Retail, Logistics, Healthcare, and more.</p>
+        <ul class="values-list">
+          <li><i class="fa fa-bullseye val-icon"></i><div class="val-text"><h4>Our Vision</h4><p>To be the most trusted HR partner for businesses across South India, empowering people and organisations to reach their true potential.</p></div></li>
+          <li><i class="fa fa-heart val-icon"></i><div class="val-text"><h4>Our Values</h4><p>Integrity, Excellence, Innovation, People-first, and Compliance — these pillars guide every decision we make.</p></div></li>
+          <li><i class="fa fa-handshake val-icon"></i><div class="val-text"><h4>Our Promise</h4><p>We commit to delivering quality, speed, and transparency in everything we do for clients and candidates alike.</p></div></li>
+        </ul>
+      </div>
+      <div class="about-visual">
+        <div class="about-num">10+</div>
+        <p style="color:rgba(255,255,255,0.75);margin-bottom:24px;">Years of HR Excellence in Bangalore</p>
+        <div class="about-team">
+          <div class="team-item"><div class="num">500+</div><div class="lbl">Candidates Placed</div></div>
+          <div class="team-item"><div class="num">100+</div><div class="lbl">Client Companies</div></div>
+          <div class="team-item"><div class="num">25+</div><div class="lbl">HR Experts</div></div>
+          <div class="team-item"><div class="num">98%</div><div class="lbl">Retention Rate</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">GST Certificates of Appreciation</h2>
+      <p class="section-subtitle">Recognized by the GSTN for timely return filing and substantial GST contributions year after year.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
+      {% for year in [2021, 2022, 2023, 2024, 2025] %}
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;">
+        <i class="fa fa-award" style="font-size:2rem;color:var(--gold);margin-bottom:12px;display:block;"></i>
+        <h4 style="font-family:var(--font-display);color:var(--navy);">GST Certificate</h4>
+        <p style="color:var(--gray);font-size:0.85rem;">March {{ year }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">Join Us</div>
+    <h2 class="section-title" style="margin:0 auto 16px;">Ready to Partner With Us?</h2>
+    <div style="display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap;">
+      <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+      <a href="{{ url_for('careers') }}" class="btn btn-outline-navy">View Careers</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

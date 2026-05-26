@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Manpower & Payroll Outsourcing – Aarav People Partners{% endblock %}
+{% block content %}
+<div class="page-hero"><div class="container">
+  <h1>Manpower & Payroll Outsourcing</h1>
+  <p>Complete workforce management and payroll processing with full statutory compliance.</p>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="#">Services</a><span>/</span><span>Manpower & Payroll</span></div>
+</div></div>
+<section class="section"><div class="container">
+  <div class="service-detail-grid">
+    <div class="service-detail-content">
+      <div class="section-label">Our Service</div>
+      <h2>End-to-End Manpower & Payroll Solutions</h2>
+      <p>We take complete ownership of your workforce management — from hiring contract staff to processing monthly salaries — letting your team focus on core business goals.</p>
+      <p>Our payroll engine handles PF, ESI, TDS, PT, Gratuity, and all statutory deductions automatically, ensuring zero compliance risk.</p>
+      <div class="feature-list">
+        {% for f in [
+          ('fa-users', 'Contract Staffing', 'Source, screen, and deploy contract employees for your project needs.'),
+          ('fa-calculator', 'Payroll Processing', 'Accurate, timely payroll with automated statutory deductions and payslips.'),
+          ('fa-file-invoice', 'Compliance Management', 'PF, ESI, TDS, PT filings done on time, every time.'),
+          ('fa-chart-bar', 'MIS & Reporting', 'Detailed HR and payroll reports for informed decision making.'),
+          ('fa-id-card', 'Onboarding & Offboarding', 'Smooth employee lifecycle management from joining to exit.'),
+          ('fa-headset', 'Dedicated Support', '24/7 HR helpdesk for all employee queries.'),
+        ] %}
+        <div class="feature-item"><i class="fa {{ f[0] }}"></i><div><h4>{{ f[1] }}</h4><p>{{ f[2] }}</p></div></div>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      <div class="cta-box">
+        <h3>Get a Free Consultation</h3>
+        <p>Let our experts assess your manpower and payroll needs and propose a custom solution.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary" style="width:100%;justify-content:center;">Contact Us Now</a>
+        <p style="margin-top:16px;font-size:0.82rem;color:rgba(255,255,255,0.6);">Or call us at<br><a href="tel:+919876543210" style="color:var(--gold);font-weight:600;">+91 7026067457</a></p>
+      </div>
+    </div>
+  </div>
+</div></section>
+{% endblock %}

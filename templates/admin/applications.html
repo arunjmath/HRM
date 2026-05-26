@@ -1,0 +1,137 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Applications – Admin{% endblock %}
+{% block page_title %}Applications{% endblock %}
+
+{% block content %}
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+
+  <p style="color:#6b7280;font-size:0.88rem;">
+    {{ applications|length }} application(s)
+  </p>
+
+</div>
+
+<div class="table-card">
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Job Role</th>
+        <th>Phone</th>
+        <th>Experience</th>
+        <th>Resume</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for app in applications %}
+
+      <tr>
+
+        <td>
+          <strong>{{ app.name }}</strong><br>
+
+          <span style="font-size:0.78rem;color:#6b7280;">
+            {{ app.email }}
+          </span>
+        </td>
+
+        <td>
+          {{ app.job_title }}
+        </td>
+
+        <td>
+          {{ app.phone }}
+        </td>
+
+        <td>
+          {{ app.experience }}
+        </td>
+
+        <td>
+
+          {% if app.resume_file %}
+
+          <a href="{{ url_for('static', filename='uploads/resumes/' + app.resume_file) }}"
+             target="_blank"
+             class="btn btn-sm btn-primary">
+
+             <i class="fa fa-download"></i>
+             View Resume
+
+          </a>
+
+          {% else %}
+
+          No Resume
+
+          {% endif %}
+
+        </td>
+
+        <td>
+
+          <form method="POST"
+                action="{{ url_for('admin_update_application', app_id=app._id) }}">
+
+            <select name="status"
+                    onchange="this.form.submit()">
+
+              <option value="pending"
+                {% if app.status == 'pending' %}selected{% endif %}>
+                Pending
+              </option>
+
+              <option value="shortlisted"
+                {% if app.status == 'shortlisted' %}selected{% endif %}>
+                Shortlisted
+              </option>
+
+              <option value="rejected"
+                {% if app.status == 'rejected' %}selected{% endif %}>
+                Rejected
+              </option>
+
+            </select>
+
+          </form>
+
+        </td>
+
+        <td style="font-size:0.78rem;color:#6b7280;">
+
+          {{ app.applied_at.strftime('%b %d, %Y') if app.applied_at else '' }}
+
+        </td>
+
+      </tr>
+
+      {% else %}
+
+      <tr>
+
+        <td colspan="7"
+            style="text-align:center;padding:40px;color:#6b7280;">
+
+          No applications found.
+
+        </td>
+
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}

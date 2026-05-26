@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} – Aarav People Partners{% endblock %}
+{% block content %}
+<div class="page-hero"><div class="container">
+  <h1>{{ course.title }}</h1>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/student-course">Courses</a><span>/</span><span>{{ course.title }}</span></div>
+</div></div>
+<section class="section"><div class="container"><div class="service-detail-grid">
+  <div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;">
+      <span class="tag tag-blue">{{ course.category }}</span>
+      <span class="tag tag-gold">{{ course.duration }}</span>
+      <span class="tag tag-green">{{ course.level }}</span>
+      {% if course.certification %}<span class="tag" style="background:rgba(201,168,76,0.15);color:#92650a;"><i class="fa fa-certificate"></i> {{ course.certification }}</span>{% endif %}
+    </div>
+    <h2 style="font-family:var(--font-display);color:var(--navy);font-size:1.8rem;margin-bottom:16px;">{{ course.title }}</h2>
+    <p style="color:var(--gray);line-height:1.8;margin-bottom:24px;">{{ course.description }}</p>
+    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:12px;">Curriculum</h3>
+    <pre style="white-space:pre-line;color:var(--gray);font-family:var(--font-body);line-height:2;">{{ course.curriculum }}</pre>
+  </div>
+  <div><div class="cta-box">
+    <h3>Enrol Now</h3>
+    <div style="font-size:2rem;font-family:var(--font-display);color:var(--gold);margin:12px 0;">₹{{ course.price }}</div>
+    <p>Join the next batch and kickstart your career.</p>
+    <a href="{{ url_for('enroll_course', course_id=course._id) }}" class="btn btn-primary" style="width:100%;justify-content:center;">Enrol Now</a>
+    <a href="{{ url_for('contact') }}" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;">Ask a Question</a>
+  </div></div>
+</div></div></section>
+{% endblock %}
+TMPL
+
+cat > /home/claude/aarav_people_partners/templates/enroll.html << 'TMPL'
+{% extends "base.html" %}
+{% block title %}Enrol in {{ course.title }} – Aarav People Partners{% endblock %}
+{% block content %}
+<div class="page-hero"><div class="container">
+  <h1>Course Enrollment</h1>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/student-course">Courses</a><span>/</span><span>Enroll</span></div>
+</div></div>
+<section class="section"><div class="container" style="max-width:720px;">
+  <div class="form-card">
+    <h2 style="font-family:var(--font-display);color:var(--navy);margin-bottom:4px;">Course Enrollment Form</h2>
+    <p style="color:var(--gray);margin-bottom:28px;">Enrolling in: <strong>{{ course.title }}</strong> | ₹{{ course.price }}</p>
+    <form method="POST">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name *</label><input type="text" name="name" required></div>
+        <div class="form-group"><label>Email *</label><input type="email" name="email" required></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required></div>
+        <div class="form-group"><label>Highest Qualification</label><input type="text" name="qualification" placeholder="e.g. B.Com, MBA"></div>
+        <div class="form-group full"><label>Message / Questions</label><textarea name="message" rows="4" placeholder="Any specific questions or requirements?"></textarea></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top:24px;">Submit Enrollment <i class="fa fa-paper-plane"></i></button>
+    </form>
+  </div>
+</div></section>
+{% endblock %}

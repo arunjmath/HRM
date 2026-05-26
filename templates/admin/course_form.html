@@ -1,0 +1,147 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ 'Edit' if course else 'New' }} Course – Admin
+{% endblock %}
+
+{% block page_title %}
+{{ 'Edit Course' if course else 'Add New Course' }}
+{% endblock %}
+
+{% block content %}
+
+<div class="form-card" style="max-width:900px;">
+
+  <form method="POST">
+
+    <div class="form-grid">
+
+      <div class="form-group full">
+        <label>Course Title *</label>
+
+        <input type="text"
+               name="title"
+               value="{{ course.title if course else '' }}"
+               required
+               placeholder="e.g. HR & Payroll Management">
+      </div>
+
+      <div class="form-group">
+        <label>Category *</label>
+
+        <select name="category">
+          {% for c in ['HR','Payroll','Recruitment','E-Commerce','Logistics','AI','Management'] %}
+          <option value="{{ c }}"
+            {{ 'selected' if course and course.category == c }}>
+            {{ c }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Duration *</label>
+
+        <input type="text"
+               name="duration"
+               value="{{ course.duration if course else '' }}"
+               required
+               placeholder="e.g. 3 Months">
+      </div>
+
+      <div class="form-group">
+        <label>Level *</label>
+
+        <select name="level">
+          {% for l in ['Beginner','Intermediate','Beginner to Advanced','Intermediate to Advanced','Advanced'] %}
+          <option value="{{ l }}"
+            {{ 'selected' if course and course.level == l }}>
+            {{ l }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Price (₹) *</label>
+
+        <input type="text"
+               name="price"
+               value="{{ course.price if course else '' }}"
+               required
+               placeholder="e.g. 15000">
+      </div>
+
+      <div class="form-group">
+        <label>Certification</label>
+
+        <input type="text"
+               name="certification"
+               value="{{ course.certification if course else '' }}"
+               placeholder="e.g. NSQF Level 5">
+      </div>
+
+      <div class="form-group full">
+        <label>Featured Image URL</label>
+
+        <input type="url"
+               name="image_url"
+               value="{{ course.image_url if course else '' }}"
+               placeholder="https://...">
+      </div>
+
+      <div class="form-group full">
+        <label>Description *</label>
+
+        <textarea name="description"
+                  rows="4"
+                  required>{{ course.description if course else '' }}</textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Curriculum (one per line)</label>
+
+        <textarea name="curriculum"
+                  rows="8"
+                  placeholder="Module 1&#10;Module 2&#10;Module 3">{{ course.curriculum if course else '' }}</textarea>
+      </div>
+
+      {% if course %}
+      <div class="form-group">
+
+        <label class="check-label">
+
+          <input type="checkbox"
+                 name="active"
+                 {{ 'checked' if course.active }}>
+
+          Active (visible on website)
+
+        </label>
+
+      </div>
+      {% endif %}
+
+    </div>
+
+    <div class="form-actions">
+
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i>
+        {{ 'Update Course' if course else 'Add Course' }}
+      </button>
+
+      <a href="{{ url_for('admin_courses') }}"
+         class="btn btn-navy">
+
+        <i class="fa fa-times"></i>
+        Cancel
+      </a>
+
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

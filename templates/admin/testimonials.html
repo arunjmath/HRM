@@ -1,0 +1,122 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Testimonials – Admin{% endblock %}
+
+{% block page_title %}
+Testimonials
+{% endblock %}
+
+{% block content %}
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+
+  <p style="color:#6b7280;font-size:0.88rem;">
+    {{ testimonials|length }} testimonial(s)
+  </p>
+
+  <a href="{{ url_for('admin_new_testimonial') }}"
+     class="btn btn-primary">
+
+    <i class="fa fa-plus"></i>
+    Add Testimonial
+  </a>
+
+</div>
+
+<div class="table-card">
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Company</th>
+        <th>Rating</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for t in testimonials %}
+      <tr>
+
+        <td><strong>{{ t.name }}</strong></td>
+
+        <td>{{ t.designation }}</td>
+
+        <td>{{ t.company or '–' }}</td>
+
+        <td>
+          {% for i in range(t.rating) %}
+          <i class="fa fa-star" style="color:#C9A84C;"></i>
+          {% endfor %}
+        </td>
+
+        <td>
+          {{ t.message[:80] }}
+          {% if t.message|length > 80 %}...{% endif %}
+        </td>
+
+        <td>
+          <span class="badge {{ 'badge-green' if t.active else 'badge-gray' }}">
+            {{ 'Visible' if t.active else 'Hidden' }}
+          </span>
+        </td>
+
+        <td>
+
+          <div style="display:flex;gap:6px;">
+
+            <form method="POST"
+                  action="{{ url_for('admin_toggle_testimonial', t_id=t._id) }}">
+
+              <button type="submit"
+                      class="btn btn-sm">
+
+                <i class="fa {{ 'fa-eye-slash' if t.active else 'fa-eye' }}"></i>
+
+              </button>
+
+            </form>
+
+            <form method="POST"
+                  action="{{ url_for('admin_delete_testimonial', t_id=t._id) }}"
+                  onsubmit="return confirm('Delete?')">
+
+              <button type="submit"
+                      class="btn btn-sm btn-danger">
+
+                <i class="fa fa-trash"></i>
+
+              </button>
+
+            </form>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      {% else %}
+      <tr>
+        <td colspan="7"
+            style="text-align:center;padding:40px;color:#6b7280;">
+
+          No testimonials yet.
+
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+
+</div>
+
+{% endblock %}

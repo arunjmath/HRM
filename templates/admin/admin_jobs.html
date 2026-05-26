@@ -1,0 +1,62 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Dashboard – Admin{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="stat-cards">
+
+  <div class="stat-card">
+    <div class="icon"><i class="fa fa-briefcase"></i></div>
+    <div class="num">{{ jobs_count }}</div>
+    <div class="lbl">Jobs</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon"><i class="fa fa-file-alt"></i></div>
+    <div class="num">{{ applications_count }}</div>
+    <div class="lbl">Applications</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon"><i class="fa fa-newspaper"></i></div>
+    <div class="num">{{ blogs_count }}</div>
+    <div class="lbl">Blogs</div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon"><i class="fa fa-envelope"></i></div>
+    <div class="num">{{ contacts_count }}</div>
+    <div class="lbl">Contacts</div>
+  </div>
+
+</div>
+
+<div class="table-card">
+  <div class="table-card-header">
+    <h3>Recent Applications</h3>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for a in applications %}
+      <tr>
+        <td>{{ a.name }}</td>
+        <td>{{ a.job_title }}</td>
+        <td><span class="badge badge-blue">New</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

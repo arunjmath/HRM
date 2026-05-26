@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% block title %}Blog Posts – Admin{% endblock %}
+{% block page_title %}Blog Posts{% endblock %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+  <p style="color:#6b7280;font-size:0.88rem;">{{ blogs|length }} post(s)</p>
+  <a href="{{ url_for('admin_new_blog') }}" class="btn btn-primary"><i class="fa fa-pen"></i> Write New Post</a>
+</div>
+<div class="table-card">
+  <table>
+    <thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Views</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+    <tbody>
+      {% for b in blogs %}
+      <tr>
+        <td><strong>{{ b.title }}</strong><br><span style="font-size:0.75rem;color:#6b7280;">{{ b.slug }}</span></td>
+        <td style="font-size:0.82rem;">{{ b.author or '–' }}</td>
+        <td><span class="badge badge-blue" style="font-size:0.72rem;">{{ b.category or '–' }}</span></td>
+        <td style="font-size:0.82rem;">{{ b.views or 0 }}</td>
+        <td><span class="badge {{ 'badge-green' if b.published else 'badge-gray' }}">{{ 'Published' if b.published else 'Draft' }}</span></td>
+        <td style="font-size:0.78rem;color:#6b7280;">{{ b.created_at.strftime('%b %d, %Y') if b.created_at else '' }}</td>
+        <td>
+          <div style="display:flex;gap:6px;">
+            <a href="{{ url_for('blog_detail', slug=b.slug) }}" target="_blank" class="btn btn-sm" style="background:#f3f4f6;color:#374151;"><i class="fa fa-eye"></i></a>
+            <a href="{{ url_for('admin_edit_blog', blog_id=b._id) }}" class="btn btn-sm btn-navy"><i class="fa fa-edit"></i></a>
+            <form method="POST" action="{{ url_for('admin_delete_blog', blog_id=b._id) }}" onsubmit="return confirm('Delete this post?')">
+              <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" style="text-align:center;padding:40px;color:#6b7280;">No posts yet. <a href="{{ url_for('admin_new_blog') }}" style="color:#C9A84C;">Write your first post</a>.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

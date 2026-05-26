@@ -1,0 +1,66 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Contact Messages – Admin{% endblock %}
+
+{% block page_title %}Contact Messages{% endblock %}
+
+{% block content %}
+
+<div class="table-card">
+  <div class="table-card-header">
+    <h3>All Contact Messages ({{ contacts|length }})</h3>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for c in contacts %}
+      <tr>
+        <td>
+          <strong>{{ c.name }}</strong>
+        </td>
+
+        <td>
+          <a href="mailto:{{ c.email }}">{{ c.email }}</a>
+        </td>
+
+        <td>
+          {{ c.phone or '—' }}
+        </td>
+
+        <td>
+          {{ c.subject or '—' }}
+        </td>
+
+        <td style="max-width:300px;font-size:0.82rem;">
+          {{ c.message[:120] }}
+          {% if c.message|length > 120 %}...{% endif %}
+        </td>
+
+        <td style="font-size:0.78rem;color:#6b7280;">
+          {{ c.created_at.strftime('%b %d, %Y') if c.created_at else '' }}
+        </td>
+      </tr>
+
+      {% else %}
+      <tr>
+        <td colspan="6" style="text-align:center;padding:40px;color:#6b7280;">
+          No contact messages found.
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

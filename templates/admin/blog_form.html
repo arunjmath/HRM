@@ -1,0 +1,143 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+{{ 'Edit' if blog else 'New' }} Blog Post – Admin
+{% endblock %}
+
+{% block page_title %}
+{{ 'Edit Blog Post' if blog else 'Write New Post' }}
+{% endblock %}
+
+{% block content %}
+
+<div class="form-card" style="max-width:900px;">
+
+  <form method="POST">
+
+    <div class="form-grid">
+
+      <div class="form-group full">
+
+        <label>Post Title *</label>
+
+        <input type="text"
+               name="title"
+               value="{{ blog.title if blog else '' }}"
+               required
+               placeholder="Enter blog post title...">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Author</label>
+
+        <input type="text"
+               name="author"
+               value="{{ blog.author if blog else session.get('admin_name','Admin') }}"
+               placeholder="Author name">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Category</label>
+
+        <select name="category">
+
+          {% for c in [
+            'HR Insights',
+            'Talent Acquisition',
+            'Payroll Tips',
+            'Labour Law',
+            'Career Advice',
+            'Industry News',
+            'Company Updates'
+          ] %}
+
+          <option value="{{ c }}"
+            {{ 'selected' if blog and blog.category == c }}>
+
+            {{ c }}
+
+          </option>
+
+          {% endfor %}
+
+        </select>
+
+      </div>
+
+      <div class="form-group full">
+
+        <label>Excerpt</label>
+
+        <textarea name="excerpt"
+                  rows="2"
+                  placeholder="Short summary...">{{ blog.excerpt if blog else '' }}</textarea>
+
+      </div>
+
+      <div class="form-group full">
+
+        <label>Featured Image URL</label>
+
+        <input type="url"
+               name="image_url"
+               value="{{ blog.image_url if blog else '' }}"
+               placeholder="https://...">
+
+      </div>
+
+      <div class="form-group full">
+
+        <label>Content *</label>
+
+        <textarea name="content"
+                  rows="15"
+                  required>{{ blog.content if blog else '' }}</textarea>
+
+      </div>
+
+      <div class="form-group">
+
+        <label class="check-label">
+
+          <input type="checkbox"
+                 name="published"
+                 {{ 'checked' if (blog and blog.published) or not blog }}>
+
+          Publish immediately
+
+        </label>
+
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button type="submit" class="btn btn-primary">
+
+        <i class="fa fa-save"></i>
+
+        {{ 'Update Post' if blog else 'Publish Post' }}
+
+      </button>
+
+      <a href="{{ url_for('admin_blogs') }}"
+         class="btn btn-navy">
+
+        <i class="fa fa-times"></i>
+
+        Cancel
+
+      </a>
+
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}

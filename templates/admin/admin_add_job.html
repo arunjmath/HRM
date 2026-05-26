@@ -1,0 +1,49 @@
+{% extends "admin/base_admin.html" %}
+
+{% block page_title %}Add Job{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+
+  <form method="POST">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Job Title</label>
+        <input type="text" name="title">
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location">
+      </div>
+
+      <div class="form-group">
+        <label>Job Type</label>
+        <select name="job_type">
+          <option>Full Time</option>
+          <option>Part Time</option>
+          <option>Remote</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>Description</label>
+        <textarea name="description"></textarea>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary">
+        Save Job
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+{% endblock %}
